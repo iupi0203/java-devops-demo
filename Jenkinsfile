@@ -34,6 +34,7 @@ pipeline{
                sh "echo $hello"
                //未来，凡是需要取变量值的时候，都用双引号
                sh 'echo ${world}'
+               sh "ssh --help"
             }
         }
         //1、编译 "abc"
@@ -141,6 +142,18 @@ pipeline{
                             // some block
                              sh "docker login -u ${ali_user} -p ${ali_pwd}   registry.cn-hangzhou.aliyuncs.com"
 //                              sh "docker tag java-devops-demo registry.cn-hangzhou.aliyuncs.com/lfy/java-devops-demo:${APP_VER}"
+                        }
+
+                        //ssh 秘钥文件配置到 jenkins 全局秘钥中
+                        withCredentials(ssh){
+                          //ansible 没有
+                          sh "ssh root@xxxx  "
+                          //不应该的操作。
+                          sh "远程操作其他机器。。。。"
+
+                          //k8s集群
+                          //动态切换k8s集群
+
                         }
                    }
                 }
